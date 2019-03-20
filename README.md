@@ -5,7 +5,8 @@ blockchain知识网络了解项目
 
 ### 安装与启动     
 >$ npm install
-$ npm run dev   
+
+>$ npm run dev   
 
 
 ### 参考文章
