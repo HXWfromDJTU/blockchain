@@ -35,3 +35,12 @@ index 表明该区块在整条链中所处的位置
 nonce是一个不断增长的值，直到找到一个☝️能够匹配要求的随机数。     
 
 > In case of Bitcoin, the proof-of-work mechanism ensures that only 1 block can be added every 10 minutes.
+
+
+需要临时存放pending数据的地方。    
+
+> The first thing that we need is a place to store pending transactions.
+
+> However it should be possible to submit new transactions in between the creation of two blocks.       
+
+> In Bitcoin’s case there is a block size limit of 2mb.      
