@@ -38,21 +38,32 @@ class Blockchain{
         for (let i = 1; i < this.chain.length; i++){
             const currentBlock = this.chain[i];
             const previousBlock = this.chain[i - 1];
-
+            // 校验当前区块的hash值           
             if (currentBlock.hash !== currentBlock.calculateHash()) {
                 return false;
             }
-
+            // 校验前后区块的hash值         
             if (currentBlock.previousHash !== previousBlock.hash) {
+                return false;
+            }
+            // 判断当前区块中的所有交易是否都合法
+            if(!currentBlock.hasValidTransactions()){
                 return false;
             }
         }
         return true;
     }
     /**
-     * 创建交易，相当于缓存     
+     * 创建并且添加一个交易，并且缓存起来    
      */
-    createTransaction(transaction){
+    addTransaction(transaction){
+        // 判断当前交易的参数是否有效
+        if(!transaction.fromAddr || !transaction.toAddr){
+            throw new Error('Transaction must include from and to address');
+        }
+        if(!transaction.isValid()){
+            throw new Error('Cannot add invalid transaction to chain');
+        }
        // 缓存未提交的交易     
        this.pendingTransactions.push(transaction);
     }
@@ -96,6 +107,7 @@ class Blockchain{
         }
 
     }
+ 
 }
 
 exports.Blockchain = Blockchain;

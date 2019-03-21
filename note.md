@@ -44,3 +44,8 @@ nonce是一个不断增长的值，直到找到一个☝️能够匹配要求的
 > However it should be possible to submit new transactions in between the creation of two blocks.       
 
 > In Bitcoin’s case there is a block size limit of 2mb.      
+
+> The public key will be used as our wallet's address and is freely shareable,    
+
+
+> Remember: you can only sign transactions when they come out of your own pocket. You can't spend the coins of someone else.

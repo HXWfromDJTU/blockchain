@@ -8,7 +8,7 @@ class Block {
         this.previousHash = previousHash; // 上一个区块的hash   
         this.timestamp = timestamp; // 时间戳
         this.transactions = transactions; // data   
-        this.hash = this.calculateHash();  // 计算区块哈希值 
+        this.hash = this.calculateHash();  // 初始化计算区块哈希值 
         this.nonce = 0; // 用于限制区块的创建速度     
     }
     /**
@@ -35,6 +35,18 @@ class Block {
         }
         // log 出结果 
         console.log('success when nonce = '+ this.nonce +',hash = '+this.hash)
+    }
+    /**
+     * 检测当前区块上的所有关联交易是否有效（通过签名检测）     
+     */
+    hasValidTransactions(){
+        // 遍历当前区块上的所有交易
+        for(const trans of this.transactions){
+            if(!trans.isValid()){
+                return false;
+            }
+        }
+        return true;
     }
 }
 
